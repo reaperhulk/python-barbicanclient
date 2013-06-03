@@ -81,7 +81,7 @@ if __name__ == '__main__':
     secret_ref = conn.create_secret(args.name,
                                     args.mime_type,
                                     args.algorithm,
-                                    args.bit_length,
+                                    int(args.bit_length),
                                     args.cypher_type,
                                     args.plain_text,
                                     args.expiration)

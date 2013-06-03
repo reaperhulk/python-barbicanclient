@@ -72,6 +72,6 @@ if __name__ == '__main__':
     order = conn.create_order(args.name,
                               args.mime_type,
                               args.algorithm,
-                              args.bit_length,
+                              int(args.bit_length),
                               args.cypher_type)
     print order
