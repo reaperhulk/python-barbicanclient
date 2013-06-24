@@ -39,3 +39,6 @@ nosetests.xml
 
 # generic venvs
 .venv
+
+# mac detritus
+.DS_Store
