@@ -11,7 +11,7 @@ class Order(object):
         """
         self.connection = connection
         self.status = order_dict.get('status')
-        self.secret = order_dict.get('secret')  # TODO: store as object?
+        self.secret = order_dict.get('secret')
         self.secret_ref = order_dict.get('secret_ref')
         self.order_ref = order_dict.get('order_ref')
         self.created = parse_isotime(order_dict.get('created'))
@@ -26,6 +26,9 @@ class Order(object):
     def id(self):
         return self._id
 
+    def get_secret(self):
+        return self.connection.get_secret(self.secret_ref)
+
     def save(self):
         self.connection.update_order(self)
 
@@ -33,4 +36,11 @@ class Order(object):
         self.connection.delete_order(self)
 
     def __str__(self):
-        return "<Order %s>" % self.id
+        return ("Order - ID: {0}\n"
+                "        order reference: {1}\n"
+                "        secret reference: {2}\n"
+                "        created: {3}\n"
+                "        status: {4}\n"
+                .format(self.id, self.order_ref, self.secret_ref, self.created,
+                        self.status)
+                )
